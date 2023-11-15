@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function Input() {
+export default function Input({className, placeholder, value, type}) {
   return (
-    <div>Input</div>
+    <input className={className} placeholder={placeholder} value={value} type={type} />
   )
 }
