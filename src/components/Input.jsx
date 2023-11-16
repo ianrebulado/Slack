@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function Input({className, placeholder, value, type}) {
+export default function Input({className, placeholder, type, onChange}) {
   return (
-    <input className={className} placeholder={placeholder} value={value} type={type} />
+    <input className={className} placeholder={placeholder} type={type} onChange={onChange} autoComplete='off'/>
   )
 }

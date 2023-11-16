@@ -80,7 +80,6 @@ body{
 }
 
 .form-label {
-  margin-top: 1rem;
   width: 100%;
   font-size: .7rem;
   font-weight: 600;
@@ -95,7 +94,7 @@ body{
 
 
 .qr-cont {
-  margin-top: 1.3rem;
+  margin-top: 2rem;
   width: 10rem;
   text-align: center;
   padding-right: 10px ;
@@ -107,16 +106,22 @@ body{
 }
 
 h4 {
-  margin-top: 1rem ;
+  margin-top: 2rem ;
   font-size: .9rem;
 }
 
 .mobile-app {
+  color: #8E959E;
   font-size: .7rem;
+  
 }
 
 .forgot-pw, .register {
   font-size: .8rem;
+}
+
+.register{
+  color: #8E959E;
 }
 
 a {
