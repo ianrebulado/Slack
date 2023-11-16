@@ -10,14 +10,14 @@
 body{
   width: 100vw;
   height: 100vh;
-  background-image: url("../../images/1291249.png");
-  background-size: cover;
-  background-repeat: no-repeat;
   font-family: 'Whitney', sans-serif;
   color: white;
 }
 
 .position {
+  background-image: url("../../images/1291249.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   position: absolute;
   width: 100vw;
   height: 100vh;
