@@ -90,7 +90,7 @@ export default function LoginPage() {
           <Button className={"login-btn"} text={"Login"} />
 
           <span className="register">
-            Need an account? <Link to={'/test'}> Register </Link>
+            Need an account? <Link to={'/signup'}> Register </Link>
           </span>
         </form>
 
