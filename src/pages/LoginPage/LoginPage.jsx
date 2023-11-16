@@ -11,7 +11,8 @@ export default function LoginPage() {
   const [passwordValue, setPassword] = useState("");
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
-
+  const navigate = useNavigate();
+  
 
   // handle change
   const handleChange = (e) => {
@@ -22,29 +23,30 @@ export default function LoginPage() {
       setPassword(value);
     }
   };
-
+  
   // handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://206.189.91.54/api/v1/sign_in", {
+      const res = await fetch("http://206.189.91.54/api/v1/auth/sign_in", {
         headers: {
           "Content-Type": "application/json",
         },
         method: "POST",
-        body: JSON.stringify({ email: "meline@hotmail.com", password: "12345678" }),
+        body: JSON.stringify({ email: emailValue, password: passwordValue }),
       });
+
       // headers
-      // console.log(res.headers.get('uid'))
-      // console.log(res.headers.get('access-token'))
-      // console.log(res.headers.get('expiry'))
-      // console.log(res.headers.get('client'))
+      console.log(res.headers.get('uid'))
+      console.log(res.headers.get('access-token'))
+      console.log(res.headers.get('expiry'))
+      console.log(res.headers.get('client'))
+
       const data = await res.json()
+      console.log(data)
+      
 
-      setData(data)
-
-      const navigate = useNavigate();
       navigate('/test');
 
     } catch (error) {
