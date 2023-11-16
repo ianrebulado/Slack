@@ -1,4 +1,5 @@
 import React from 'react'
+import '../Test/test.css'
 
 export default function Testpage() {
   return (
