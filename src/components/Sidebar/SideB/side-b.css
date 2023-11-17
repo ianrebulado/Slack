@@ -2,4 +2,30 @@
     background-color: #2B2D31;
     height: 100%;
     width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 } 
+
+.sideb-header {
+    padding: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2.3rem;
+    font-size: 1.1rem;
+    border-radius: .75rem;
+    color: #949BA4
+}
+
+.top-separator {
+    background-color: #1F2023;
+    margin-top: .8rem;
+    margin-bottom: .7rem;
+    height: .1rem;
+    width: 100%;
+}
+
+.sideb-header:hover {
+    background-color: #404249;
+}
