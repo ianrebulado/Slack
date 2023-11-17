@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import FormLabel from "../../components/FormLabel";
@@ -45,10 +45,13 @@ export default function LoginPage() {
 
       const data = await res.json()
       console.log(data)
-      
 
+      if(res.status === 200){
       navigate('/test');
-
+      }
+      else {
+        navigate('/')
+      }
     } catch (error) {
       console.error(error);
     }
