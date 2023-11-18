@@ -47,7 +47,7 @@ export default function LoginPage() {
       console.log(data)
 
       if(res.status === 200){
-      navigate('/test');
+      navigate('/m');
       }
       else {
         navigate('/')
