@@ -45,7 +45,7 @@
 
 
 
-.icon-container {
+.usericon-container, .plusicon-container {
     background-color: #313338;
     display: flex;
     justify-content: center;
@@ -62,7 +62,7 @@
     border-radius: .7rem;
 }
 
-.icon-container:hover, .logout-icon-container:hover{
+.usericon-container:hover, .plusicon-container:hover, .logout-icon-container:hover{
     background-color: #23A559;
     border-radius: .7rem;
 }

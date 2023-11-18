@@ -16,6 +16,7 @@ export default function SideA() {
   const handleLogoutHover = () => setLogoutHovered(true);
   const handleLogoutLeave = () => setLogoutHovered(false);
 
+
   return (
     <div className="side-a">
       <div className="logo-container">
@@ -25,7 +26,7 @@ export default function SideA() {
       <div className="separator" />
 
       <div
-        className="icon-container"
+        className="usericon-container"
         onMouseEnter={handleUsersHover}
         onMouseLeave={handleUsersLeave}
       >
@@ -33,7 +34,7 @@ export default function SideA() {
       </div>
 
       <div
-        className="icon-container"
+        className="plusicon-container"
         onMouseEnter={handlePlusHover}
         onMouseLeave={handlePlusLeave}
       >
