@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import FormLabel from "../../components/FormLabel";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
-import "../Signup/signup.css";
 import { Link, useNavigate, redirect} from "react-router-dom";
+import { Slack } from "../../utils/axios";
+import "../Signup/signup.css";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -11,8 +12,14 @@ export default function Signup() {
   const [passwordConf, setPasswordConf] = useState("");
   const navigate = useNavigate();
 
+  const payload = {
+    email: email,
+    password: password,
+    password_confirmation: passwordConf
+  }
+
   // handle change
-  const handleChange = (e) => {
+  function handleChange(e) {
     const { name, value } = e.target;
     if (name === "email") {
       setEmail(value);
@@ -23,12 +30,6 @@ export default function Signup() {
     }
   };
 
-  // check if states are changing
-  useEffect(()=> {
-    console.log('email',email)
-    console.log('pw', password)
-    console.log('pwc', passwordConf)
-  },[email, password, passwordConf])
 
 
 
@@ -37,19 +38,24 @@ export default function Signup() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://206.189.91.54/api/v1/auth/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          password_confirmation: passwordConf,
-        }),
-      });
+     const res = await Slack.post('/auth', payload)
+    
+      const token = res.headers.get('access-token');
+      const uid = res.headers.get('uid');
+      const expiry = res.headers.get('expiry');
+      const client = res.headers.get('client');
 
-      navigate('/')
+      Slack.defaults.headers['access-token'] = token;
+      Slack.defaults.headers['uid'] = uid;
+      Slack.defaults.headers['expiry'] = expiry;
+      Slack.defaults.headers['client'] = client;
+
+      localStorage.setItem('token', token)
+      localStorage.setItem('uid', uid)
+      localStorage.setItem('expiry', expiry)
+      localStorage.setItem('client', token)
+
+    navigate('/')
 
     } catch (error) {
       console.error(error);

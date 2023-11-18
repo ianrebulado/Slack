@@ -4,6 +4,8 @@ import Button from "../../components/Button";
 import FormLabel from "../../components/FormLabel";
 import { Link, useNavigate } from "react-router-dom";
 import qr2 from '../../images/qr.png';
+import { Slack } from "../../utils/axios";
+
 import "./login.css";
 
 export default function LoginPage() {
@@ -12,10 +14,14 @@ export default function LoginPage() {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
-  
+
+  const payload = {
+    email: emailValue,
+    password: passwordValue
+  }
 
   // handle change
-  const handleChange = (e) => {
+  function handleChange(e) {
     const { name, value } = e.target;
     if (name === "email") {
       setEmail(value);
@@ -25,37 +31,38 @@ export default function LoginPage() {
   };
   
   // handle submit
-  const handleSubmit = async (e) => {
+  async function handleSubmit(e){
     e.preventDefault();
+  try {
+    const res = await Slack.post('/auth/sign_in', payload)
+    
+      const token = res.headers.get('access-token');
+      const uid = res.headers.get('uid');
+      const expiry = res.headers.get('expiry');
+      const client = res.headers.get('client');
+    
+      Slack.defaults.headers['access-token'] = token;
+      Slack.defaults.headers['uid'] = uid;
+      Slack.defaults.headers['expiry'] = expiry;
+      Slack.defaults.headers['client'] = client;
 
-    try {
-      const res = await fetch("http://206.189.91.54/api/v1/auth/sign_in", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify({ email: emailValue, password: passwordValue }),
-      });
+      localStorage.setItem('token', token)
+      localStorage.setItem('uid', uid)
+      localStorage.setItem('expiry', expiry)
+      localStorage.setItem('client', token)
 
-      // headers
-      console.log(res.headers.get('uid'))
-      console.log(res.headers.get('access-token'))
-      console.log(res.headers.get('expiry'))
-      console.log(res.headers.get('client'))
+        console.log(res)
+        if(res.status === 200){
+        navigate('/m');
+        } else {
+          console.log('Error')
+          navigate('/')
+        }
+} catch (error) {
+  console.error(error)
+}
+}
 
-      const data = await res.json()
-      console.log(data)
-
-      if(res.status === 200){
-      navigate('/m');
-      }
-      else {
-        navigate('/')
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <div className="position">
