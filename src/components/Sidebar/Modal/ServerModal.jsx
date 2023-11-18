@@ -31,13 +31,6 @@ export default function Modal({ onClose }) {
     { value: 'strawberry', label: 'Strawberry' },
     { value: 'vanilla', label: 'Vanilla' }
   ]
-
-
-
-
-
-
-
   
     return (
       <div className="modal-container">
@@ -46,10 +39,11 @@ export default function Modal({ onClose }) {
           <FormLabel label={'SERVER NAME'} />
           <Input className={'server-input'}/>
           <FormLabel label={'SELECT USERS'} />
-          <Select options={options}/>
-          
-          <Button className={'create-btn'} text={'CREATE'} />
+          <Select options={options} placeholder='' />
+          <div className='buttons'>
           <Button className={'close-btn'} handleClick={onClose} text={'CLOSE'} />
+          <Button className={'create-btn'} text={'CREATE'} />
+          </div>
         </div>
       </div>
     );
