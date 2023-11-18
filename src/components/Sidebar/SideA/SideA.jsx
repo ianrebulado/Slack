@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
+import {useNavigate} from 'react-router-dom'
 import "../SideA/side-a.css";
 import logo from "../../../images/discordpng.png";
 import { Users2, Plus, LogOut } from "lucide-react";
@@ -21,6 +22,18 @@ export default function SideA() {
   // modal state
   const handlePlusClick = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
+
+  const navigate = useNavigate();
+
+
+
+  function handleLogoutClick () {
+    navigate('/')
+  }
+
+
+
+
 
   return (
     <div className="side-a">
@@ -53,6 +66,7 @@ export default function SideA() {
         className="logout-icon-container"
         onMouseEnter={handleLogoutHover}
         onMouseLeave={handleLogoutLeave}
+        onClick={handleLogoutClick}
       >
         <LogOut color={logoutHovered ? "white" : "#23A559"} strokeWidth={2} />
       </div>
