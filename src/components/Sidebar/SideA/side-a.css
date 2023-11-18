@@ -65,5 +65,6 @@
 .usericon-container:hover, .plusicon-container:hover, .logout-icon-container:hover{
     background-color: #23A559;
     border-radius: .7rem;
+    cursor: pointer;
 }
 
