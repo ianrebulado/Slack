@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import "../SideA/side-a.css";
 import logo from "../../../images/discordpng.png";
 import { Users2, Plus, LogOut } from "lucide-react";
+import Modal from "../Modal/ServerModal";
 
 export default function SideA() {
   const [usersHovered, setUsersHovered] = useState(false);
   const [plusHovered, setPlusHovered] = useState(false);
   const [logoutHovered, setLogoutHovered] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // hover arte
   const handleUsersHover = () => setUsersHovered(true);
@@ -15,7 +17,10 @@ export default function SideA() {
   const handlePlusLeave = () => setPlusHovered(false);
   const handleLogoutHover = () => setLogoutHovered(true);
   const handleLogoutLeave = () => setLogoutHovered(false);
-
+  
+  // modal state
+  const handlePlusClick = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
   return (
     <div className="side-a">
@@ -37,6 +42,7 @@ export default function SideA() {
         className="plusicon-container"
         onMouseEnter={handlePlusHover}
         onMouseLeave={handlePlusLeave}
+        onClick={handlePlusClick}
       >
         <Plus color={plusHovered ? "white" : "#23A559"}  />
       </div>
@@ -50,6 +56,8 @@ export default function SideA() {
       >
         <LogOut color={logoutHovered ? "white" : "#23A559"} strokeWidth={2} />
       </div>
+
+      {isModalOpen && <Modal onClose={handleCloseModal} />}
     </div>
   );
 }
