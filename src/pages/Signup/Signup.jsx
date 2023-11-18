@@ -37,7 +37,7 @@ export default function Signup() {
     e.preventDefault();
 
     try {
-      const res = fetch("http://206.189.91.54/api/v1/auth/", {
+      const res = await fetch("http://206.189.91.54/api/v1/auth/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,11 +49,8 @@ export default function Signup() {
         }),
       });
 
-      if (res.status >= 200 && res.status < 300) {
-        redirect("/");
-      } else {
-        console.error()
-      }
+      navigate('/')
+
     } catch (error) {
       console.error(error);
     }
