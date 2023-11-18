@@ -3,7 +3,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import FormLabel from "../../components/FormLabel";
 import { Link, useNavigate } from "react-router-dom";
-import qr2 from '../../images/QR.png';
+import qr2 from '../../images/qr.png';
 import "./login.css";
 
 export default function LoginPage() {
