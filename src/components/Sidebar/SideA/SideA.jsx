@@ -28,6 +28,7 @@ export default function SideA() {
 
 
   function handleLogoutClick () {
+    localStorage.clear()
     navigate('/')
   }
 
