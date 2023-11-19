@@ -26,4 +26,4 @@ export const Slack = axios.create({
     // localStorage.setItem('token', token)
     // localStorage.setItem('uid', uid)
     // localStorage.setItem('expiry', expiry)
-    // localStorage.setItem('client', token)
+    // localStorage.setItem('client', client)
