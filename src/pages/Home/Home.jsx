@@ -7,9 +7,13 @@ export default function Home() {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(false)
 
+  // if(!loading) {
+  //   console.log('Loading...')
+  // }
 
   async function fetchData() {
     setLoading(true)
+    console.log('Loading...')
     try {        
       const res = await Slack.get('/users')
       if(res.status === 200){
@@ -20,6 +24,7 @@ export default function Home() {
     }
     finally {
       setLoading(false)
+      console.log('Loading done')
     }
   };
 

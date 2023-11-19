@@ -6,13 +6,12 @@ import Modal from "./Modal/ServerModal";
 
 export default function Sidebar({ fetchUsers }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const handlePlusClick = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
   return (
     <div className="sidebar-container">
-      <SideA fetchUsers={fetchUsers} handlePlusClick={handlePlusClick} handleCloseModal={handleCloseModal}/>
+      <SideA fetchUsers={fetchUsers} handlePlusClick={handlePlusClick} />
       <SideB />
       {isModalOpen && <Modal onClose={handleCloseModal} fetchUsers={fetchUsers} />}
     </div>
