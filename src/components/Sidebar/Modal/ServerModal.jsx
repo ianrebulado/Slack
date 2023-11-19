@@ -1,36 +1,14 @@
-import React, {useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import Input from '../../Input'
 import FormLabel from '../../FormLabel'
 import Button from '../../Button'
 import Select from 'react-select'
+import { Slack } from '../../../utils/axios'
 import '../Modal/modal.css'
 
-export default function Modal({ onClose }) {
+export default function Modal({ onClose, fetchUsers }) {
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch('http://206.189.91.54/api/v1/users', {
-          method: 'GET',
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await res.json();
-        console.log(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
-  
-
-  const options = [
-    { value: 'hehe' , label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-  ]
+  const options = fetchUsers
   
     return (
       <div className="modal-container">
