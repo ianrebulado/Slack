@@ -8,8 +8,7 @@ import '../SideB/side-b.css'
 export default function SideB() {
 
   const username = localStorage.getItem('uid')
-
-
+  
   return (
     <div className='side-b'>
       <div className='top-separator' />
@@ -38,7 +37,7 @@ export default function SideB() {
 
       <section className='user'> 
       <div className='username'> <User2 size={18}/> { username }</div>  
-      <Mic size={17} /> <Headphones size={17}/> <Settings size={17} />
+      <Mic size={17} cursor={'pointer'}/> <Headphones size={17} cursor={'pointer'}/> <Settings size={17} cursor={'pointer'}/>
        </section>
     </div>
   )
