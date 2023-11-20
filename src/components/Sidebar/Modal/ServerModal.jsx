@@ -7,7 +7,15 @@ import "../Modal/modal.css";
 
 export default function Modal({ onClose, fetchUsers }) {
 
-  const options = fetchUsers;
+  console.log('modal', fetchUsers)
+
+  
+  const options = fetchUsers.map((user)=>{
+    return {
+      value: user.id,
+      label: user.email
+    };
+  });
 
   return (
     <div className="modal-container">
@@ -20,6 +28,7 @@ export default function Modal({ onClose, fetchUsers }) {
           options={options}
           placeholder=""
           className="select-dropdown"
+          isMulti
         />
         <div className="buttons">
           <Button

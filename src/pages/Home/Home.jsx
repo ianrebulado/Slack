@@ -17,7 +17,9 @@ export default function Home() {
     try {        
       const res = await Slack.get('/users')
       if(res.status === 200){
-        setData(res.data.data)
+        const users = Object.values(res.data.data).flat()
+        console.log('users data', users)
+        setData(users)
       }
     } catch (error) {
       console.error(error);
