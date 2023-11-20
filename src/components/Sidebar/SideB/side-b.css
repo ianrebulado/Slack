@@ -1,62 +1,93 @@
 .side-b {
-    background-color: #2B2D31;
-    height: 100%;
-    width: 80%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-} 
+  background-color: #2b2d31;
+  height: 100%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 
 .sideb-header {
-    padding: 1rem;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 2.3rem;
-    font-size: 1.1rem;
-    border-radius: .75rem;
-    color: #949BA4
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 2.3rem;
+  font-size: 1.1rem;
+  border-radius: 0.75rem;
+  color: #949ba4;
 }
 
 .top-separator {
-    background-color: #1F2023;
-    margin-top: .8rem;
-    margin-bottom: .7rem;
-    height: .1rem;
-    width: 100%;
+  background-color: #1f2023;
+  margin-top: 0.8rem;
+  margin-bottom: 0.7rem;
+  height: 0.1rem;
+  width: 100%;
 }
 
 .sideb-header:hover {
-    background-color: #404249;
+  background-color: #404249;
+}
+
+.messages {
+  width: 100%;
+  height: 70%;
+  padding: 0 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: #949ba4;
+  overflow: auto;
+}
+
+.message-header {
+  color: #fff;
+  width: 90%;
+  font-size: 0.9rem;
+  margin: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .user {
-    margin-top: auto;
-    padding-right: 1rem;
-    background-color: #232428;
-    color: #949BA4;
-    border-top: 2px solid #1F2023;
-    width: 100%;
-    height: 8%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: .75rem;
+  margin-top: auto;
+  padding-right: 1rem;
+  background-color: #232428;
+  color: #949ba4;
+  border-top: 2px solid #1f2023;
+  width: 100%;
+  height: 8%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .username {
- height: 100%;
- padding: 1rem;
- margin-right: .75rem;
- display: flex;
- justify-content: center;
- align-items: center;
- gap: 1rem;
- cursor: pointer;
+  height: 100%;
+  padding: 1rem;
+  margin-right: 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
 }
 
 .username:hover {
-    background-color: #404249;
-    
-    border-radius: 1rem;
+  background-color: #404249;
+
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #404249;
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #232428;
+  border-radius: 1rem;
 }
