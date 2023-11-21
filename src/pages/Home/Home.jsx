@@ -1,47 +1,53 @@
-import React, { useState, useEffect } from 'react'
-import Sidebar from '../../components/Sidebar/Sidebar'
-import { Slack } from '../../utils/axios'
-import '../Home/home.css'
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import { Slack } from "../../utils/axios";
+import Loader from "../Loader/Loader";
+import "../Home/home.css";
 
 export default function Home() {
-  const [data, setData] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-  // if(!loading) {
-  //   console.log('Loading...')
-  // }
-
-  async function fetchData() {
-    setLoading(true)
-    console.log('Loading...')
-    try {        
-      const res = await Slack.get('/users')
-      if(res.status === 200){
-        const users = Object.values(res.data.data).flat()
-        console.log('users data', users)
-        setData(users)
-      }
-    } catch (error) {
-      console.error(error);
-    }
-    finally {
-      setLoading(false)
-      console.log('Loading done')
-    }
-  };
-
-
+  
+  
   useEffect(() => {
-   if (!data){
-     fetchData()
+    async function fetchData() {
+      try {
+        const res = await Slack.get("/users");
+        if (res.status === 200) {
+          const users = Object.values(res.data.data).flat();
+          setData(users);
+          console.log('loading')
+          console.log(users)
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+        console.log('done')
+      }
+    };
+    
+    if (!data) {
+      fetchData();
     }
-  },[data]);
-
-
+  }, [data]);
+  
+  useEffect(() => {
+    if (!loading) {
+      const timeout = setTimeout(() => {
+        navigate("/m");
+      }, 4000);
+      return () => clearTimeout(timeout);
+    }
+  }, [loading, navigate]);
+  
+  
   return (
-    <div className='home-container'>
-      <Sidebar fetchUsers={data}/>
-      
+    <div className="home-container">
+      {loading ? <Loader /> : <Sidebar fetchUsers={data} />}
     </div>
-  )
+  );
 }
