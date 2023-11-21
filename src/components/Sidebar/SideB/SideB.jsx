@@ -1,11 +1,11 @@
 import React from 'react'
-import ChatWindow from '../../Chat/ChatWindow'
+import ChatIcon from '../../Chat/ChatIcon'
 
 
 import { Users2, Rocket, User2, Settings, Mic, Headphones, Plus } from 'lucide-react'
 import '../SideB/side-b.css'
 
-export default function SideB() {
+export default function SideB({channelList}) {
 
   const username = localStorage.getItem('uid')
   
@@ -17,22 +17,8 @@ export default function SideB() {
 
       <div className='message-header'> <div> Messages </div> <Plus size={16} strokeWidth={2}/> </div>
     <section className='messages'>
-    <ChatWindow /> 
-    <ChatWindow />
-    <ChatWindow />
-    <ChatWindow />
-    <ChatWindow /> 
-    <ChatWindow />
-    <ChatWindow />
-    <ChatWindow />
-    <ChatWindow /> 
-    <ChatWindow />
-    <ChatWindow />
-    <ChatWindow />
-    <ChatWindow /> 
-    <ChatWindow />
-    <ChatWindow />
-    <ChatWindow />
+    {channelList.map((channel, index) => (
+        <ChatIcon key={index} channel={channel} />))}
     </section>
 
       <section className='user'> 
