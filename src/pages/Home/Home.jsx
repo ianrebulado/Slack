@@ -27,12 +27,12 @@ export default function Home() {
       } finally {
         setLoading(false);
         console.log('done')
+
       }
     };
     
     if (!data) {
-      fetchData();
-    }
+      fetchData()
   }, [data]);
   
   useEffect(() => {
@@ -48,6 +48,7 @@ export default function Home() {
   return (
     <div className="home-container">
       {loading ? <Loader /> : <Sidebar fetchUsers={data} />}
+
     </div>
   );
 }
