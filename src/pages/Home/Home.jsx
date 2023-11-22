@@ -21,19 +21,19 @@ export default function Home() {
           setData(users);
           console.log('loading')
           console.log(users)
+          setLoading(false);
         }
       } catch (error) {
         console.error(error);
       } finally {
-        setLoading(false);
-        console.log('done')
-
       }
-    };
-    
+    }
+
     if (!data) {
-      fetchData()
-  }, [data]);
+      fetchData()}}, 
+      [data]);
+  
+      
   
   useEffect(() => {
     if (!loading) {
