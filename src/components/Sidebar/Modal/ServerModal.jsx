@@ -19,7 +19,7 @@ export default function Modal({ onClose, fetchUsers, onStanleySubmit }) {
 
 
    function addUser(userOptions) {
-     const selectedUID = userOptions.map((option) => option.label);
+     const selectedUID = userOptions.map((option) => option.value);
      setSelectedUsers(selectedUID)
      console.log('setselectedUsers', selectedUID)
   }

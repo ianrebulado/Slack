@@ -21,7 +21,10 @@ export default function Sidebar({ fetchUsers }) {
     try {
       const res = await Slack.get('/channels');
       const channels = Object.values(res.data.data).flat()
-      const channelNames = channels.map((channel) => channel.name);
+      const channelNames = channels.map(channel => ({
+        id: channel.id,
+        name: channel.name,
+      }));
       setChannelsList(channelNames);
     } catch (error) {
       console.error(error);
