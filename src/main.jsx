@@ -6,6 +6,7 @@ import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home/Home";
 import ProtectedRoute from "./utils/Routes";
 import ChatWindow from "./components/Chat/ChatWindow";
+import DMWindow from './components/DM/DMWindow'
 import { Slack } from "./utils/axios";
 
 
@@ -33,6 +34,13 @@ const router = createBrowserRouter([
         loader: ({params})=> {
           return params.channelID
         }
+    }, 
+    {
+      path: ':userID',
+      element: <DMWindow />,
+      loader: ({params})=> {
+        return params.userID
+      }
     }
   ]
   },

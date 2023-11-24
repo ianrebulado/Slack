@@ -6,7 +6,7 @@ import logo from "../../../images/discordpng.png";
 import { Users2, Plus, LogOut } from "lucide-react";
 
 export default function SideA({
-  handlePlusClick, channelList
+  handlePlusClick, channelList, handleUserClick
 }) {
   const [usersHovered, setUsersHovered] = useState(false);
   const [plusHovered, setPlusHovered] = useState(false);
@@ -40,6 +40,7 @@ export default function SideA({
         className="usericon-container"
         onMouseEnter={handleUsersHover}
         onMouseLeave={handleUsersLeave}
+        onClick={handleUserClick}
       >
         <Users2 color={usersHovered ? "white" : "#23A559"} />
       </div>
@@ -60,6 +61,7 @@ export default function SideA({
           <ChatIcon channel={channel} /> 
           </Link>
         ))}
+        {/* {console.log(channelList)} */}
       </div>
       <div className="separator" />
       

@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import "../SideB/side-b.css";
 
-export default function SideB({ channelList }) {
+export default function SideB({ conversations }) {
   const username = localStorage.getItem("uid");
 
   return (
@@ -31,7 +31,7 @@ export default function SideB({ channelList }) {
       </div>
       <section className="messages">
       </section>
-
+      <Link to={'/m/'}></Link>
 
       <section className="user">
         <div className="username">
