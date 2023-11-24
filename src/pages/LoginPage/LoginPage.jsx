@@ -36,10 +36,12 @@ export default function LoginPage() {
   try {
     const res = await Slack.post('/auth/sign_in', payload)
     
+    
       const token = res.headers.get('access-token');
       const uid = res.headers.get('uid');
       const expiry = res.headers.get('expiry');
       const client = res.headers.get('client');
+      const id = res.data.data.id
     
       Slack.defaults.headers['access-token'] = token;
       Slack.defaults.headers['uid'] = uid;
@@ -50,6 +52,7 @@ export default function LoginPage() {
       localStorage.setItem('uid', uid)
       localStorage.setItem('expiry', expiry)
       localStorage.setItem('client', client)
+      localStorage.setItem('id', id )
 
         if(res.status === 200){
         navigate('/m');
