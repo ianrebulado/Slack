@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import "../SideA/side-a.css";
 import logo from "../../../images/discordpng.png";
 import { Users2, Plus, LogOut } from "lucide-react";
@@ -29,10 +29,10 @@ export default function SideA({
 
   return (
     <div className="side-a">
-      <div className="logo-container">
+      <div className="logo-container" onClick={()=> navigate('/m')}>
         <img src={logo} className="logo" />
       </div>
-
+      
       <div className="separator" />
 
       <div
