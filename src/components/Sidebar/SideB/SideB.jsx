@@ -1,5 +1,6 @@
-import React from "react";
+  import React from "react";
 import ChatIcon from "../../Chat/ChatIcon";
+import { Link } from "react-router-dom";
 
 import {
   Users2,
@@ -19,29 +20,27 @@ export default function SideB({ channelList }) {
     <div className="side-b">
       <div className="top-separator" />
       <div className="sideb-header">
-        
         <Users2 strokeWidth={2.5} /> Friends
       </div>
       <div className="sideb-header">
-        
         <Rocket strokeWidth={2.5} /> Turbo
       </div>
 
       <div className="message-header">
-        
-        <div> Channels </div> <Plus size={16} strokeWidth={2} />
+         Channels <Plus size={16} strokeWidth={2} />
       </div>
       <section className="messages">
         {channelList.map((channel, index) => (
-          <ChatIcon key={index} channel={channel} />
+          <Link to={`/m/${channel.id}`} key={channel.id}>
+          <ChatIcon channel={channel} /> 
+          </Link>
         ))}
-
       </section>
 
 
       <section className="user">
         <div className="username">
-          <User2 size={18} /> {username}
+          <User2 size={18}/> {username}
         </div>
         <Mic size={17} cursor={"pointer"} />
         <Headphones size={17} cursor={"pointer"} />
