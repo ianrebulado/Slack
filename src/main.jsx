@@ -5,10 +5,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Signup from "./pages/Signup/Signup";
 import Home from "./pages/Home/Home";
 import ProtectedRoute from "./utils/Routes";
+import ChatWindow from "./components/Chat/ChatWindow";
+import { Slack } from "./utils/axios";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
+    index: true,
     element: <LoginPage />,
   },
   {
@@ -22,6 +26,15 @@ const router = createBrowserRouter([
         <Home />
       </ProtectedRoute>
     ),
+    children: [
+      {
+        path: ':channelID',
+        element: <ChatWindow />,
+        loader: ({params})=> {
+          return params.channelID
+        }
+    }
+  ]
   },
 ]);
 
