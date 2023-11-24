@@ -38,10 +38,6 @@ export default function Modal({ onClose, fetchUsers, onStanleySubmit }) {
     onStanleySubmit(payload)
   } 
 
-  
-
-console.log(channelName)
-
   return (
     <div className="modal-container">
       <form className="modal" onSubmit={handleSubmit}>
