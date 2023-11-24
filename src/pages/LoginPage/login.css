@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-  transition: all ease-in-out 200ms;
+  
 }
 
 body{
@@ -126,5 +126,6 @@ h4 {
 }
 
 a {
-  color: #02A3F3
+  color: #02A3F3;
+  text-decoration: none;
 }

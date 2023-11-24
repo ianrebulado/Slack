@@ -51,11 +51,11 @@ export default function LoginPage() {
       localStorage.setItem('expiry', expiry)
       localStorage.setItem('client', client)
 
-        console.log(res)
         if(res.status === 200){
         navigate('/m');
         } else {
           console.log('Error')
+          localStorage.clear()
           navigate('/')
         }
 } catch (error) {
