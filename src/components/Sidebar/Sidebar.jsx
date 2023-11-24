@@ -3,7 +3,9 @@ import "../Sidebar/sidebar.css";
 import SideA from "./SideA/SideA";
 import SideB from "./SideB/SideB";
 import Modal from "./Modal/ServerModal";
+import ChatWindow from "../Chat/ChatWindow";
 import { Slack } from "../../utils/axios";
+import { Outlet } from "react-router-dom";
 
 export default function Sidebar({ fetchUsers }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,7 +37,6 @@ export default function Sidebar({ fetchUsers }) {
   useEffect(() => {
     if(channelsList.length === 0) {
       fetchChannels()
-      console.log(channelsList)
     }}, [channelsList]);
 
     
@@ -50,7 +51,8 @@ export default function Sidebar({ fetchUsers }) {
       try {
         const res = await Slack.post('/channels', payload);
         if (res.status === 200) {
-          setChannelData(res.data.data);
+          const channels = Object.values(res.data.data).flat()
+          setChannelData(channels);
           fetchChannels();
           setIsModalOpen(false);
         } 
@@ -61,7 +63,6 @@ export default function Sidebar({ fetchUsers }) {
     createChannel()
   }
 
-  console.log('list', channelsList)
 
   return (
     <div className="sidebar-container">
@@ -73,7 +74,8 @@ export default function Sidebar({ fetchUsers }) {
           onClose={handleCloseModal}
           fetchUsers={fetchUsers}
         />
-      )}
+        )}
+        <Outlet />
     </div>
   );
 }
