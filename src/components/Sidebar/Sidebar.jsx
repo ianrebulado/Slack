@@ -66,7 +66,7 @@ export default function Sidebar({ fetchUsers }) {
 
   return (
     <div className="sidebar-container">
-      <SideA fetchUsers={fetchUsers} handlePlusClick={handlePlusClick} />
+      <SideA fetchUsers={fetchUsers} handlePlusClick={handlePlusClick} channelList={channelsList} />
       <SideB channelList={channelsList}/>
       {isModalOpen && (
         <Modal

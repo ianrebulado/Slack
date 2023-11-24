@@ -27,14 +27,9 @@ export default function SideB({ channelList }) {
       </div>
 
       <div className="message-header">
-         Channels <Plus size={16} strokeWidth={2} />
+         Messages <Plus size={16} strokeWidth={2} />
       </div>
       <section className="messages">
-        {channelList.map((channel, index) => (
-          <Link to={`/m/${channel.id}`} key={channel.id}>
-          <ChatIcon channel={channel} /> 
-          </Link>
-        ))}
       </section>
 
 

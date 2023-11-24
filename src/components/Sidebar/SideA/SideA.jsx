@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { redirect, useNavigate, Link } from "react-router-dom";
 import "../SideA/side-a.css";
+import ChatIcon from "../../Chat/ChatIcon";
 import logo from "../../../images/discordpng.png";
 import { Users2, Plus, LogOut } from "lucide-react";
 
 export default function SideA({
-  handlePlusClick,
+  handlePlusClick, channelList
 }) {
   const [usersHovered, setUsersHovered] = useState(false);
   const [plusHovered, setPlusHovered] = useState(false);
@@ -51,9 +52,17 @@ export default function SideA({
       >
         <Plus color={plusHovered ? "white" : "#23A559"} />
       </div>
-
       <div className="separator" />
 
+      <div className="channel-section"> 
+      {channelList.map((channel, index) => (
+          <Link to={`/m/${channel.id}`} key={channel.id}>
+          <ChatIcon channel={channel} /> 
+          </Link>
+        ))}
+      </div>
+      <div className="separator" />
+      
       <div
         className="logout-icon-container"
         onMouseEnter={handleLogoutHover}
