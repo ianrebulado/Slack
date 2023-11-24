@@ -7,7 +7,7 @@ export default function Loader() {
   return (
     <div className= 'info'>
         <div className="squares"> </div>
-        Did you know that Stanley is pogi?
+       <h5> Did you know</h5> <br /> Stanley is pogi
     </div>
   )
 }

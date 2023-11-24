@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import ChatWindow from "../../components/Chat/ChatWindow";
 import { Slack } from "../../utils/axios";
 import Loader from "../Loader/Loader";
 import "../Home/home.css";
@@ -19,8 +20,6 @@ export default function Home() {
         if (res.status === 200) {
           const users = Object.values(res.data.data).flat();
           setData(users);
-          console.log('loading')
-          console.log(users)
           setLoading(false);
         }
       } catch (error) {
@@ -39,7 +38,7 @@ export default function Home() {
     if (!loading) {
       const timeout = setTimeout(() => {
         navigate("/m");
-      }, 4000);
+      }, 3500);
       return () => clearTimeout(timeout);
     }
   }, [loading, navigate]);
@@ -47,8 +46,8 @@ export default function Home() {
   
   return (
     <div className="home-container">
-      {loading ? <Loader /> : <Sidebar fetchUsers={data} />}
-
+      {loading ? <Loader /> : <Sidebar fetchUsers={data}  />}
+      
     </div>
   );
 }
