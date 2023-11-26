@@ -5,8 +5,8 @@ import Button from "../../Button";
 import Select from "react-select";
 import "../Modal/modal.css";
 
-export default function DMModal({ onClose, fetchUsers }) {
-  const [selectedUsers, setSelectedUsers] = useState([])
+export default function DMModal({ onClose, fetchUsers, onIanSubmit }) {
+  const [selectedUser, setSelectedUser] = useState(null)
 
   const options = fetchUsers.map((user) => {
     return {
@@ -14,16 +14,10 @@ export default function DMModal({ onClose, fetchUsers }) {
       label: user.uid,
       };
     });
-
-  //  function addUser(userOptions) {
-  //    const selectedUID = userOptions.map((option) => option.value);
-  //    setSelectedUsers(selectedUID)
-  //    console.log('setselectedUsers', selectedUID)
-  // }
   
   function handleSubmit(e) {
-    e.preventDefault();
-    
+    e.preventDefault()
+    onIanSubmit(selectedUser)
   } 
 
   return (
@@ -36,6 +30,7 @@ export default function DMModal({ onClose, fetchUsers }) {
           options={options}
           placeholder=""
           className="select-dropdown"
+          onChange={(user)=> setSelectedUser(user)}
         />
         <div className="buttons">
           <Button

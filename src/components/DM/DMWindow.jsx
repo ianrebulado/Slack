@@ -5,78 +5,78 @@ import "../Chat/chatwindow.css";
 import { Slack } from "../../utils/axios";
 import { User } from "lucide-react";
 
-export default function ChatWindow({}) {
-  const [conversationData, setConversationData] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+export default function DMWindow({}) {
+//   const [conversationData, setConversationData] = useState([]);
+//   const [inputValue, setInputValue] = useState("");
 
-  const receiverID = useLoaderData();
-  const userID = localStorage.get('id')
+//   const receiverID = useLoaderData();
+//   const userID = localStorage.get('id')
 
 
 
-  const payload = {
-    receiver_id: userID,
-    receiver_class: "User",
-  };
+//   const payload = {
+//     receiver_id: userID,
+//     receiver_class: "User",
+//   };
 
-  const reqBody = {
-    receiver_id: receiverID,
-    receiver_class: "User",
-    body: inputValue,
-  };
+//   const reqBody = {
+//     receiver_id: receiverID,
+//     receiver_class: "User",
+//     body: inputValue,
+//   };
 
-  useEffect(() => {
-    async function fetchMsgs() {
-      try {
-        const res = await Slack.get(
-          `/messages?receiver_id=${userID}&receiver_class=User`,
-          payload
-        );
-        const data = Object.values(res.data.data).flat();
+  // useEffect(() => {
+  //   async function fetchMsgs() {
+  //     try {
+  //       const res = await Slack.get(
+  //         `/messages?receiver_id=${userID}&receiver_class=User`,
+  //         payload
+  //       );
+  //       const data = Object.values(res.data.data).flat();
 
-        const mappedData = data.map((msgs) => ({
-          body: msgs.body,
-          senderUid: msgs.sender.uid,
-        }));
-        setConversationData(mappedData);
-      } catch (error) {
-        console.log(error);
-      } 
-    }
-    const interval = setInterval(fetchMsgs, 500)
+  //       const mappedData = data.map((msgs) => ({
+  //         body: msgs.body,
+  //         senderUid: msgs.sender.uid,
+  //       }));
+  //       setConversationData(mappedData);
+  //     } catch (error) {
+  //       console.log(error);
+  //     } 
+  //   }
+  //   const interval = setInterval(fetchMsgs, 500)
     
-    return () => clearInterval(interval);
-  }, [channelID]);
+  //   return () => clearInterval(interval);
+  // }, [channelID]);
 
 
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  // async function handleSubmit(e) {
+  //   e.preventDefault();
 
-    if (inputValue.trim() === '') {
-      return;
-    }
+  //   if (inputValue.trim() === '') {
+  //     return;
+  //   }
 
-    try {
-      const res = await Slack.post("/messages", reqBody);
-    } catch (error) {
-      console.log(error)
-    } finally{
-      setInputValue('')
-    }
-  }
+  //   try {
+  //     const res = await Slack.post("/messages", reqBody);
+  //   } catch (error) {
+  //     console.log(error)
+  //   } finally{
+  //     setInputValue('')
+  //   }
+  // }
 
-  function handleChange(e) {
-    setInputValue(e.target.value)
-  }
+  // function handleChange(e) {
+  //   setInputValue(e.target.value)
+  // }
 
-  return (
-    <div className="chat-window">
-      <div className="chat-header">{receiverID}</div>
-      <div className="window-content">
-        {conversationData.map((msg, index) => (
-          <Chat key={index} sender={msg.senderUid} msg={msg.body} />
-        ))}
+  // return (
+  //   <div className="chat-window">
+  //     <div className="chat-header">{receiverID}</div>
+  //     <div className="window-content">
+  //       {conversationData.map((msg, index) => (
+  //         <Chat key={index} sender={msg.senderUid} msg={msg.body} />
+  //       ))}
 
         
 {/* {conversationData.map((msg, index) => (
@@ -90,13 +90,13 @@ export default function ChatWindow({}) {
 ))} */}
 {/* ask sir ano to */}
 
-      </div>
-      <form onSubmit={handleSubmit} className="msg-form">
-        <Input placeholder={"Message"} className={"msg-input"} type={"text"}
-        onChange={handleChange} value={inputValue}/>
-      </form>
-    </div>
-  );
+//       </div>
+//       <form onSubmit={handleSubmit} className="msg-form">
+//         <Input placeholder={"Message"} className={"msg-input"} type={"text"}
+//         onChange={handleChange} value={inputValue}/>
+//       </form>
+//     </div>
+//   );
 }
 
 function Chat({ sender, msg }) {
