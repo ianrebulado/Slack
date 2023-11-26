@@ -4,7 +4,7 @@
 }
 
 .chat-header {
-  color: white;
+    color: white;
     height: 7.2%;
     padding-left: 2.5rem;
     padding-top: .9rem;
@@ -67,7 +67,7 @@
 }
 
 .icon {
-  background-color: white;
+  background-color: #5865F2;
   border-radius: 2rem;
   width: 2.5rem;
   height: 2.5rem;
