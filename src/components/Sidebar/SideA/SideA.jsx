@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { redirect, useNavigate, Link } from "react-router-dom";
 import "../SideA/side-a.css";
 import ChatIcon from "../../Chat/ChatIcon";
@@ -27,7 +27,6 @@ export default function SideA({
     localStorage.clear();
     navigate("/");
   }
-
   return (
     <div className="side-a">
       <div className="logo-container" onClick={()=> navigate('/m')}>
@@ -56,12 +55,12 @@ export default function SideA({
       <div className="separator" />
 
       <div className="channel-section"> 
+      
       {channelList.map((channel, index) => (
-          <Link to={`/m/${channel.id}`} key={channel.id}>
+          <Link to={`channel/${channel.id}`} key={index}>
           <ChatIcon channel={channel} /> 
           </Link>
         ))}
-        {/* {console.log(channelList)} */}
       </div>
       <div className="separator" />
       

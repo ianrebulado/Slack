@@ -3,7 +3,6 @@ import Input from "../../Input";
 import FormLabel from "../../FormLabel";
 import Button from "../../Button";
 import Select from "react-select";
-import { Slack } from "../../../utils/axios";
 import "../Modal/modal.css";
 
 export default function Modal({ onClose, fetchUsers, onStanleySubmit }) {

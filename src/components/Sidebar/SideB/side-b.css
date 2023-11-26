@@ -29,6 +29,7 @@
 .sideb-header:hover {
   background-color: #404249;
   transition: all ease-in-out 200ms;
+  color: white
 }
 
 .messages {

@@ -4,11 +4,12 @@ import { useLoaderData } from "react-router-dom";
 import "../Chat/chatwindow.css";
 import { Slack } from "../../utils/axios";
 import { User } from "lucide-react";
+import Loader from "../../pages/Loader/Loader";
 
 export default function ChatWindow({}) {
   const [conversationData, setConversationData] = useState([]);
   const [inputValue, setInputValue] = useState("");
-
+  const [loading, setLoading] = useState(false)
   const channelID = useLoaderData();
 
   const payload = {
@@ -35,7 +36,12 @@ export default function ChatWindow({}) {
           body: msgs.body,
           senderUid: msgs.sender.uid,
         }));
-        setConversationData(mappedData);
+
+        if(mappedData.length === conversationData.length) {
+          return null 
+        } else {
+        setConversationData(mappedData)};
+        setLoading(false)
       } catch (error) {
         console.log(error);
       } 
@@ -71,21 +77,14 @@ export default function ChatWindow({}) {
     <div className="chat-window">
       <div className="chat-header">{channelID}</div>
       <div className="window-content">
-        {conversationData.map((msg, index) => (
-          <Chat key={index} sender={msg.senderUid} msg={msg.body} />
-        ))}
 
-        
-{/* {conversationData.map((msg, index) => (
-  <React.Fragment key={index}>
-    {index === 0 || msg.senderUid !== conversationData[index - 1].senderUid ? (
-      <Chat key={index} sender={msg.senderUid} msg={msg.body} />
-    ) : (
-      <div key={index}>{msg.body}</div>
-    )}
-  </React.Fragment>
-))} */}
-{/* ask sir ano to */}
+      
+        {!loading ? conversationData.map((msg, index) => (
+          <Chat key={index} sender={msg.senderUid} msg={msg.body} />
+        )) : <Loader />}
+  
+
+
 
       </div>
       <form onSubmit={handleSubmit} className="msg-form">
@@ -99,7 +98,7 @@ export default function ChatWindow({}) {
 function Chat({ sender, msg }) {
   return (
     <div className="msgs">
-     <div className="icon"> <User color="blue"/></div>
+     <div className="icon"> <User/></div>
      <div className="msg-content">
      <div className="sender"> {sender} </div>
      <div className="message"> {msg} </div>

@@ -1,5 +1,5 @@
   import React from "react";
-import ChatIcon from "../../Chat/ChatIcon";
+import DMIcon from '../../DM/DMIcon'
 import { Link } from "react-router-dom";
 
 import {
@@ -9,12 +9,14 @@ import {
   Settings,
   Mic,
   Headphones,
-  Plus,
+  Minus
 } from "lucide-react";
 import "../SideB/side-b.css";
 
 export default function SideB({ conversations }) {
   const username = localStorage.getItem("uid");
+
+  console.log('con', conversations)
 
   return (
     <div className="side-b">
@@ -27,11 +29,18 @@ export default function SideB({ conversations }) {
       </div>
 
       <div className="message-header">
-         Messages <Plus size={16} strokeWidth={2} />
+        Direct Messages <Minus size={18} strokeWidth={2} />
       </div>
       <section className="messages">
+
+      {conversations.map((conversation, index) => (
+          <Link to={`chat/${conversation.id}`} key={index}>
+          <DMIcon conversations={conversations} /> 
+          </Link>
+        ))}
+
+        
       </section>
-      <Link to={'/m/'}></Link>
 
       <section className="user">
         <div className="username">
