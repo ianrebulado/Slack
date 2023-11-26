@@ -29,17 +29,17 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: ':channelID',
+        path: 'channel/:channelID',
         element: <ChatWindow />,
         loader: ({params})=> {
           return params.channelID
         }
-    }, 
+     }, 
     {
-      path: ':userID',
+      path: 'chat/:dmID',
       element: <DMWindow />,
       loader: ({params})=> {
-        return params.userID
+        return params.dmID
       }
     }
   ]
