@@ -1,4 +1,4 @@
-  import React from "react";
+import React from "react";
 import DMIcon from '../../DM/DMIcon'
 import { Link } from "react-router-dom";
 
@@ -9,14 +9,13 @@ import {
   Settings,
   Mic,
   Headphones,
+  MessageSquarePlus,
   Minus
 } from "lucide-react";
 import "../SideB/side-b.css";
 
-export default function SideB({ conversations }) {
-  const username = localStorage.getItem("uid");
-
-  console.log('con', conversations)
+export default function SideB({selectedUsers}) {
+const name = localStorage.getItem('uid')
 
   return (
     <div className="side-b">
@@ -29,22 +28,20 @@ export default function SideB({ conversations }) {
       </div>
 
       <div className="message-header">
-        Direct Messages <Minus size={18} strokeWidth={2} />
+        Direct Messages <MessageSquarePlus  size={18} strokeWidth={2} />
       </div>
       <section className="messages">
 
-      {conversations.map((conversation, index) => (
-          <Link to={`chat/${conversation.id}`} key={index}>
-          <DMIcon conversations={conversations} /> 
+        {selectedUsers.map((user, index) =>(
+          <Link to={`chat/${user.value}` } key={index}>
+          <DMIcon id={user.label} />
           </Link>
         ))}
 
-        
       </section>
-
       <section className="user">
         <div className="username">
-          <User2 size={18}/> {username}
+          <User2 size={18}/> {name}
         </div>
         <Mic size={17} cursor={"pointer"} />
         <Headphones size={17} cursor={"pointer"} />

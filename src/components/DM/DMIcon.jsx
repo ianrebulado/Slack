@@ -1,10 +1,10 @@
 import React from 'react'
 import { User } from 'lucide-react'
 import { useLoaderData } from 'react-router-dom'
+import './dmicon.css'
 
-export default function DMIcon({conversations}) {
+export default function DMIcon({id}) {
 
-  const id = useLoaderData()
 
   return (
     <div className='dm-icon'> <User /> {id} </div>

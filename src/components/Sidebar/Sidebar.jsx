@@ -5,14 +5,14 @@ import SideB from "./SideB/SideB";
 import Modal from "./Modal/ServerModal";
 import { Slack } from "../../utils/axios";
 import { Outlet } from "react-router-dom";
-import DMModal from './DMModal/DMModal'
+import DMModal from "./DMModal/DMModal";
 
 export default function Sidebar({ fetchUsers }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dmModalOpen, setdmModalOpen] = useState(false);
   const [channelData, setChannelData] = useState(null);
   const [channelsList, setChannelsList] = useState([]);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   // channels ============================================================
 
@@ -63,17 +63,7 @@ export default function Sidebar({ fetchUsers }) {
   }, []);
 
   // DMS =======================================================================================
-
-
-
-  const [conversationsList, setConversationsList] = useState([]);
-  const [conversationData, setConversationData] = useState([]);
-
-  const userID = localStorage.getItem("id");
-  const payload = {
-    receiver_id: userID,
-    receiver_class: "User",
-  };
+const [selectedUsers, setSelectedUsers] = useState([])
 
   // dm modal
   const handleUserClick = () => setdmModalOpen(true);
@@ -82,47 +72,12 @@ export default function Sidebar({ fetchUsers }) {
     setdmModalOpen(false);
   };
 
-//   // fetch msgs
-  async function retrieveConversations() {
-    try {
-      const res = await Slack.get(
-        `/messages?receiver_id=${userID}&receiver_class=User`,
-        payload
-      );
-
-      const conversations = Object.values(res.data.data).flat();
-      const uniqueConversations = conversations.filter(
-        (conversation, index, self) =>
-          index === self.findIndex((c) => c.sender.uid === conversation.sender.uid)
-      );
-
-      const conversationNames = uniqueConversations.map((conversation) => ({
-        id: conversation.id,
-        body: conversation.body,
-        name: conversation.sender.uid,
-        receiver: conversation.receiver.uid
-      }));
-
-      setConversationsList(conversationNames);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-  // retrieveConversations()
-
-  // function handleSubmit(selectedUser){
-  //  setConversationData(selectedUser)
-  //  setdmModalOpen(false)
-  //  console.log(selectedUser)
-  // }
+function handleSubmit(selectedUser) {
+  setSelectedUsers((prev)=> [...prev, selectedUser])
+  setdmModalOpen(false)
+}
 
 
-
-  useEffect(() => {
-    if (conversationsList.length === 0) {
-      retrieveConversations();
-    }
-  }, []);
 
   return (
     <div className="sidebar-container">
@@ -132,7 +87,8 @@ export default function Sidebar({ fetchUsers }) {
         channelList={channelsList}
         handleUserClick={handleUserClick}
       />
-      <SideB conversations={conversationsList}/>
+      <SideB selectedUsers={selectedUsers} />
+
       {isModalOpen && (
         <Modal
           onStanleySubmit={handleStanleySubmit}
@@ -140,7 +96,13 @@ export default function Sidebar({ fetchUsers }) {
           fetchUsers={fetchUsers}
         />
       )}
-      {dmModalOpen && <DMModal onClose={closeModal} fetchUsers={fetchUsers} onIanSubmit={handleSubmit}/>}
+      {dmModalOpen && (
+        <DMModal
+          onClose={closeModal}
+          fetchUsers={fetchUsers}
+          onIanSubmit={handleSubmit}
+        />
+      )}
       <Outlet />
     </div>
   );
