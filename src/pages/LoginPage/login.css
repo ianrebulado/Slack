@@ -13,6 +13,7 @@ body{
   height: 100vh;
   font-family: 'Whitney', sans-serif;
   color: white;
+  scroll-behavior: smooth;
 }
 
 .position {
@@ -33,7 +34,7 @@ body{
   padding: 2rem;
   left: 0;
   top: 0;
-  display: flex; /* Use flexbox */
+  display: flex; 
   box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
   color: whitesmoke;
 }

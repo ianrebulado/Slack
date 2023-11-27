@@ -96,11 +96,12 @@ export default function ChatWindow({}) {
 }
 
 function Chat({ sender, msg }) {
+  const you = localStorage.getItem('uid')
   return (
     <div className="msgs">
      <div className="icon"> <User/></div>
      <div className="msg-content">
-     <div className="sender"> {sender} </div>
+     <div className="sender"> {sender === you ? "You" : sender } </div>
      <div className="message"> {msg} </div>
      </div>
     </div>
