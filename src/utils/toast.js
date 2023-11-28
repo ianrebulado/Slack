@@ -20,3 +20,13 @@ export function toastError(message) {
     theme: "dark",
   });
 }
+
+export function toastWarning(message) {
+  toast.warning(message, {
+    position: "top-center",
+    autoClose: 3500,
+    hideProgressBar: false,
+    pauseOnHover: false,
+    theme: "dark",
+  });
+}

@@ -1,13 +1,15 @@
 import React from 'react';
 import Button from '../../Button';
+import toastSuccess from '../../../utils/toast'
 import { useNavigate } from 'react-router-dom';
 
 
 export default function Logout({onClose}) {
     const navigate = useNavigate()
+
     const handleSubmit = () => {
-        navigate('/');
-        localStorage.clear();
+            navigate("/");
+            localStorage.clear();
     }
 
     return (

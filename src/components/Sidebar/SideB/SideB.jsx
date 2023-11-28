@@ -1,7 +1,7 @@
 import React from "react";
 import DMIcon from '../../DM/DMIcon'
 import { Link } from "react-router-dom";
-
+import { toastWarning } from "../../../utils/toast";
 import {
   Users2,
   Rocket,
@@ -19,11 +19,11 @@ const name = localStorage.getItem('uid')
   return (
     <div className="side-b">
       <div className="top-separator" />
-      <div className="sideb-header">
+      <div className="sideb-header" onClick={()=> toastWarning('Feature unavailable!')} >
         <Users2 strokeWidth={2.5} /> Friends
       </div>
-      <div className="sideb-header">
-        <Rocket strokeWidth={2.5} /> Turbo
+      <div className="sideb-header" onClick={()=> toastWarning('Feature unavailable!')}>
+        <Rocket strokeWidth={2.5}  /> Turbo
       </div>
 
       <div className="message-header">
@@ -42,9 +42,9 @@ const name = localStorage.getItem('uid')
         <div className="username">
           <User2 size={18}/> {name}
         </div>
-        <Mic size={17} cursor={"pointer"} />
-        <Headphones size={17} cursor={"pointer"} />
-        <Settings size={17} cursor={"pointer"} />
+        <Mic size={17} cursor={"pointer"} onClick={()=> toastWarning('Feature unavailable!')}/>
+        <Headphones size={17} cursor={"pointer"} onClick={()=> toastWarning('Feature unavailable!')} />
+        <Settings size={17} cursor={"pointer"} onClick={()=> toastWarning('Feature unavailable!')} />
       </section>
     </div>
   );
