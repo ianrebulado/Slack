@@ -17,7 +17,7 @@ const chat = useRef(null)
     const chatData = Object.values(res.data.data).flat()
     console.log('cd', chatData)
 
-    if (chatData === chats.length){
+    if (chatData.length === chats.length){
       return null
     } else{
       setChats(chatData)
