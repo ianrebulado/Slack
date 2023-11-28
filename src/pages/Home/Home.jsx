@@ -30,10 +30,7 @@ export default function Home() {
       }
     }
       fetchData()
-    },[data]);
-
-      console.log(data)
-  
+    },[data]);  
       
   
   useEffect(() => {
