@@ -33,12 +33,6 @@ export default function Home() {
     },[data]);
 
       console.log(data)
-
-
-      const recent = data.slice(-500)
-      const revRecent = recent.reverse()
-
-      console.log(revRecent)
   
       
   
