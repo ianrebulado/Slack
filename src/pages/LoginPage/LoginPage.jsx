@@ -5,14 +5,12 @@ import FormLabel from "../../components/FormLabel";
 import { Link, useNavigate } from "react-router-dom";
 import qr2 from '../../images/qr.png';
 import { Slack } from "../../utils/axios";
-
+import { toastError, toastSuccess } from "../../utils/toast";
 import "./login.css";
 
 export default function LoginPage() {
   const [emailValue, setEmail] = useState("");
   const [passwordValue, setPassword] = useState("");
-  const [data, setData] = useState(null)
-  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
 
   const payload = {
@@ -56,16 +54,12 @@ export default function LoginPage() {
 
         if(res.status === 200){
         navigate('/m');
-        } else {
-          console.log('Error')
-          localStorage.clear()
-          navigate('/')
-        }
+        } 
 } catch (error) {
+  toastError('Invalid credentials')
   console.error(error)
 }
 }
-
 
   return (
     <div className="position">

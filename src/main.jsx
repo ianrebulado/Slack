@@ -7,7 +7,8 @@ import Home from "./pages/Home/Home";
 import ProtectedRoute from "./utils/Routes";
 import ChatWindow from "./components/Chat/ChatWindow";
 import DMWindow from './components/DM/DMWindow'
-import { Slack } from "./utils/axios";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const router = createBrowserRouter([
@@ -47,5 +48,8 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+  <>
   <RouterProvider router={router} />
+  <ToastContainer />
+  </>
 );
