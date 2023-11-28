@@ -38,7 +38,7 @@ export default function DMModal({ onClose, fetchUsers, onIanSubmit }) {
             handleClick={onClose}
             text={"CLOSE"}
           />
-          <Button className={"create-btn"} text={"CREATE"} />
+          <Button className={"create-btn"} text={"START"} />
         </div>
       </form>
     </div>

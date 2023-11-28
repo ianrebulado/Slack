@@ -63,7 +63,7 @@ export default function AddMember({ channelID, onClose, onModalSubmit }) {
           />
           <Button
             className={"create-btn"}
-            text={"CREATE"}
+            text={"ADD"}
           />
         </div>
       </form>
