@@ -7,7 +7,7 @@ import Loader from "../Loader/Loader";
 import "../Home/home.css";
 
 export default function Home() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -19,18 +19,26 @@ export default function Home() {
         const res = await Slack.get("/users");
         if (res.status === 200) {
           const users = Object.values(res.data.data).flat();
-          setData(users);
-          setLoading(false);
+          if (users.length !== data.length) {
+            setData(users);
         }
+      }
       } catch (error) {
         console.error(error);
       } finally {
+        setLoading(false);
       }
     }
+      fetchData()
+    },[data]);
 
-    if (!data) {
-      fetchData()}}, 
-      [data]);
+      console.log(data)
+
+
+      const recent = data.slice(-500)
+      const revRecent = recent.reverse()
+
+      console.log(revRecent)
   
       
   
