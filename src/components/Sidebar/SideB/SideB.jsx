@@ -9,7 +9,6 @@ import {
   Settings,
   Mic,
   Headphones,
-  MessageSquarePlus,
   Minus
 } from "lucide-react";
 import "../SideB/side-b.css";
@@ -28,7 +27,7 @@ const name = localStorage.getItem('uid')
       </div>
 
       <div className="message-header">
-        Direct Messages <MessageSquarePlus  size={18} strokeWidth={2} />
+        Direct Messages <Minus  size={18} strokeWidth={2} />
       </div>
       <section className="messages">
 
