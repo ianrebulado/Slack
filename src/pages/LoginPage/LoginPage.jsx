@@ -3,7 +3,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import FormLabel from "../../components/FormLabel";
 import { Link, useNavigate } from "react-router-dom";
-import qr2 from '../../images/qr.png';
+import qr2 from "../../images/qr.png";
 import { Slack } from "../../utils/axios";
 import { toastError, toastSuccess } from "../../utils/toast";
 import "./login.css";
@@ -15,8 +15,8 @@ export default function LoginPage() {
 
   const payload = {
     email: emailValue,
-    password: passwordValue
-  }
+    password: passwordValue,
+  };
 
   // handle change
   function handleChange(e) {
@@ -26,40 +26,39 @@ export default function LoginPage() {
     } else if (name === "password") {
       setPassword(value);
     }
-  };
-  
+  }
+
   // handle submit
-  async function handleSubmit(e){
+  async function handleSubmit(e) {
     e.preventDefault();
-  try {
-    const res = await Slack.post('/auth/sign_in', payload)
-    
-    
-      const token = res.headers.get('access-token');
-      const uid = res.headers.get('uid');
-      const expiry = res.headers.get('expiry');
-      const client = res.headers.get('client');
-      const id = res.data.data.id
-    
-      Slack.defaults.headers['access-token'] = token;
-      Slack.defaults.headers['uid'] = uid;
-      Slack.defaults.headers['expiry'] = expiry;
-      Slack.defaults.headers['client'] = client;
+    try {
+      const res = await Slack.post("/auth/sign_in", payload);
 
-      localStorage.setItem('token', token)
-      localStorage.setItem('uid', uid)
-      localStorage.setItem('expiry', expiry)
-      localStorage.setItem('client', client)
-      localStorage.setItem('id', id )
+      const token = res.headers.get("access-token");
+      const uid = res.headers.get("uid");
+      const expiry = res.headers.get("expiry");
+      const client = res.headers.get("client");
+      const id = res.data.data.id;
 
-        if(res.status === 200){
-        navigate('/m');
-        } 
-} catch (error) {
-  toastError('Invalid credentials')
-  console.error(error)
-}
-}
+      Slack.defaults.headers["access-token"] = token;
+      Slack.defaults.headers["uid"] = uid;
+      Slack.defaults.headers["expiry"] = expiry;
+      Slack.defaults.headers["client"] = client;
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("uid", uid);
+      localStorage.setItem("expiry", expiry);
+      localStorage.setItem("client", client);
+      localStorage.setItem("id", id);
+
+      if (res.status === 200) {
+        navigate("/m");
+      }
+    } catch (error) {
+      toastError("Invalid credentials");
+      console.error(error);
+    }
+  }
 
   return (
     <div className="position">
@@ -90,14 +89,14 @@ export default function LoginPage() {
             onChange={handleChange}
           />
 
-          <Link className="forgot-pw" to={'/test'}>
+          <Link className="forgot-pw" to={"/test"}>
             Forgot your password?
           </Link>
 
           <Button className={"login-btn"} text={"Login"} />
 
           <span className="register">
-            Need an account? <Link to={'/signup'}> Register </Link>
+            Need an account? <Link to={"/signup"}> Register </Link>
           </span>
         </form>
 

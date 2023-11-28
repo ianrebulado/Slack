@@ -34,9 +34,6 @@ useEffect(() => {
 }, []);
 
 
-
-
-console.log('cd', chats)
 const payload = {
   receiver_id: id,
   receiver_class: 'User',

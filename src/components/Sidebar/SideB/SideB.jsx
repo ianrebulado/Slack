@@ -32,7 +32,7 @@ const name = localStorage.getItem('uid')
       <section className="messages">
 
         {selectedUsers.map((user, index) =>(
-          <Link to={`chat/${user.value}` } key={index}>
+          <Link to={`chat/${user.value}`} key={index}>
           <DMIcon id={user.label} />
           </Link>
         ))}
