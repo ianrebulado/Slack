@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { User } from "lucide-react";
 import Input from "../Input";
 import { useLoaderData } from "react-router-dom";
@@ -7,26 +7,36 @@ import { Slack } from "../../utils/axios";
 
 export default function DMWindow() {
 const [inputValue, setInputValue] = useState('')
-const [chatData, setChatData] = useState([])
+const [chats, setChats] = useState([])
 const id = useLoaderData()
+const chat = useRef(null)
 
   async function fetchMsgs() {
   try {
     const res = await Slack.get(`messages?receiver_id=${id}&receiver_class=User`)
     const chatData = Object.values(res.data.data).flat()
-    setChatData(chatData)
+    console.log('cd', chatData)
+
+    if (chatData === chats.length){
+      return null
+    } else{
+      setChats(chatData)
+    }
   } catch (error) {
+    console.log(error)
   }
 }
-// if(chatData.length === 0){
-//   fetchMsgs()
-// } else {
-//   return null
-// }
+
+useEffect(() => {
+  fetchMsgs(); 
+  const interval = setInterval(fetchMsgs, 5000);
+  return () => clearInterval(interval);
+}, []);
 
 
 
-console.log('cd', chatData)
+
+console.log('cd', chats)
 const payload = {
   receiver_id: id,
   receiver_class: 'User',
@@ -48,6 +58,10 @@ try {
 }
 }
 
+useEffect(() => {
+  chat.current.scrollTop = chat.current.scrollHeight;
+}, [chats]);
+
 function handleChange(e) {
   setInputValue(e.target.value)
 }
@@ -55,9 +69,9 @@ function handleChange(e) {
   return(
     <div className="chat-window">
     <div className="chat-header">{id} </div>
-    <div className="window-content">
+    <div className="window-content" ref={chat}>
 
-    {chatData.map((chat, index) => (
+    {chats.map((chat, index) => (
           <Chat key={index} sender={chat.sender.uid} msg={chat.body} />
         ))}
 

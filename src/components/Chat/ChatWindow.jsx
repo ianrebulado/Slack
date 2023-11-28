@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Input from "../Input";
 import { useLoaderData } from "react-router-dom";
 import "../Chat/chatwindow.css";
@@ -11,6 +11,7 @@ export default function ChatWindow({}) {
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false)
   const channelID = useLoaderData();
+  const chat = useRef(null)
 
   const payload = {
     receiver_id: channelID,
@@ -73,10 +74,15 @@ export default function ChatWindow({}) {
     setInputValue(e.target.value)
   }
 
+
+  useEffect(() => {
+    chat.current.scrollTop = chat.current.scrollHeight;
+  }, [conversationData]);
+
   return (
     <div className="chat-window">
       <div className="chat-header">{channelID}</div>
-      <div className="window-content">
+      <div className="window-content" ref={chat}>
 
       
         {!loading ? conversationData.map((msg, index) => (
