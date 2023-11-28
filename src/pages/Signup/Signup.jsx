@@ -34,7 +34,9 @@ export default function Signup() {
   // handle submit
   async function handleSubmit(e) {
     e.preventDefault();
-
+    if(password != passwordConf){
+      toastError("Passwords don't match. Please try again.")
+    }
     try {
       const res = await Slack.post("/auth", payload);
 
