@@ -6,13 +6,13 @@ import logo from "../../../images/discordpng.png";
 import { Users2, Plus, LogOut } from "lucide-react";
 
 export default function SideA({
-  handlePlusClick, channelList, handleUserClick
+  handlePlusClick, channelList, handleUserClick, handleLogoutClick
 }) {
+  // hover arte
   const [usersHovered, setUsersHovered] = useState(false);
   const [plusHovered, setPlusHovered] = useState(false);
   const [logoutHovered, setLogoutHovered] = useState(false);
-
-  // hover arte
+  
   const handleUsersHover = () => setUsersHovered(true);
   const handleUsersLeave = () => setUsersHovered(false);
   const handlePlusHover = () => setPlusHovered(true);
@@ -23,10 +23,7 @@ export default function SideA({
   // modal state
   const navigate = useNavigate();
 
-  function handleLogoutClick() {
-    localStorage.clear();
-    navigate("/");
-  }
+  
   return (
     <div className="side-a">
       <div className="logo-container" onClick={()=> navigate('/m')}>

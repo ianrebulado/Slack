@@ -6,10 +6,12 @@ import Modal from "./Modal/ServerModal";
 import { Slack } from "../../utils/axios";
 import { Outlet } from "react-router-dom";
 import DMModal from "./DMModal/DMModal";
+import Logout from "./Modal/Logout";
 
 export default function Sidebar({ fetchUsers }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [dmModalOpen, setdmModalOpen] = useState(false);
+  const [logoutModal, setLogoutModal] = useState(false)
   const [channelData, setChannelData] = useState(null);
   const [channelsList, setChannelsList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -77,6 +79,8 @@ function handleSubmit(selectedUser) {
   setdmModalOpen(false)
 }
 
+const handleLogoutClick = () => setLogoutModal(true)
+
 
 
   return (
@@ -86,9 +90,14 @@ function handleSubmit(selectedUser) {
         handlePlusClick={handlePlusClick}
         channelList={channelsList}
         handleUserClick={handleUserClick}
+        handleLogoutClick={handleLogoutClick}
       />
       <SideB selectedUsers={selectedUsers} />
-
+    {logoutModal && (
+      <Logout onClose={() => setLogoutModal(false)}
+      />
+    )
+    }
       {isModalOpen && (
         <Modal
           onStanleySubmit={handleStanleySubmit}

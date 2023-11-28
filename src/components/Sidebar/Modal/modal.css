@@ -14,6 +14,20 @@
   pointer-events: auto;
 }
 
+.logout {
+  background-color: #2B2D31;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  width: 30rem;
+  max-width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem
+
+}
+
 .modal {
   background-color: #2B2D31;
   border-radius: 5px;
