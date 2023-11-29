@@ -3,10 +3,10 @@ import Input from "../Input";
 import { useLoaderData } from "react-router-dom";
 import "../Chat/chatwindow.css";
 import { Slack } from "../../utils/axios";
-import { User, PlusCircle } from "lucide-react";
+import { User, PlusCircle, UserPlus, Phone, Video } from "lucide-react";
 import Loader from "../../pages/Loader/Loader";
 import AddMember from "./AddMember";
-import { toastError, toastSuccess } from "../../utils/toast";
+import { toastError, toastSuccess, toastWarning } from "../../utils/toast";
 
 export default function ChatWindow({ fetchUsers }) {
   const [conversationData, setConversationData] = useState([]);
@@ -102,8 +102,12 @@ function addMember(addPayload){
   return (
     <div className="chat-window">
       <div className="chat-header">
-        {channelID}{" "}
-        <PlusCircle size={20} cursor={"pointer"} onClick={handleClick} />{" "}
+        {channelID}
+        <div className="header-icons">
+        <Phone size={20} cursor={'pointer'} onClick={()=> toastWarning('Feature unavailable')}/> 
+        <Video size={20}  cursor={'pointer'} onClick={()=> toastWarning('Feature unavailable')}/>
+        <UserPlus size={20} cursor={"pointer"} onClick={handleClick} />
+        </div>
       </div>
       <div className="window-content" ref={chat}>
         {!loading ? (

@@ -24,7 +24,7 @@ export function toastError(message) {
 export function toastWarning(message) {
   toast.warning(message, {
     position: "top-center",
-    autoClose: 3500,
+    autoClose: 2000,
     hideProgressBar: false,
     pauseOnHover: false,
     theme: "dark",

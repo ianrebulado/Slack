@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import { User } from "lucide-react";
+import { User, Phone, Video } from "lucide-react";
 import Input from "../Input";
 import { useLoaderData } from "react-router-dom";
+import { toastWarning } from "../../utils/toast";
 import { Slack } from "../../utils/axios";
 
 
@@ -65,7 +66,13 @@ function handleChange(e) {
 
   return(
     <div className="chat-window">
-    <div className="chat-header">{id} </div>
+    <div className="chat-header">{id}
+    <div className="header-icons">
+        <Phone size={20} cursor={'pointer'} onClick={()=> toastWarning('Feature unavailable')}/> 
+        <Video size={20}  cursor={'pointer'} onClick={()=> toastWarning('Feature unavailable')}/>
+        </div>
+    
+     </div>
     <div className="window-content" ref={chat}>
 
     {chats.map((chat, index) => (

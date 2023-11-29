@@ -78,3 +78,8 @@
   align-items: center;
   margin-right: .75rem;
 }
+
+.header-icons {
+display: flex;
+gap: 1.5rem;
+}
