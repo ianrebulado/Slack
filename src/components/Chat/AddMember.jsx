@@ -47,7 +47,7 @@ export default function AddMember({ channelID, onClose, onModalSubmit }) {
   return (
     <div className="modal-container">
       <form className="modal" onSubmit={handleSubmit}>
-        <h2> Add Members </h2>
+        <h2> Add a member </h2>
         <FormLabel label={"SELECT USER"} />
         <Select
           options={options}
