@@ -6,7 +6,7 @@ export default function Loader() {
     <div className="info">
       <div className="squares"> </div>
       <h5> Did you know</h5> <br />
-      Stanley is pogi
+      Thischord's birthday is November 29, 2023!
     </div>
   );
 }
